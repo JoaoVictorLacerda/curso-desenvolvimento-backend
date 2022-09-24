@@ -16,7 +16,7 @@ export default class UserService {
                 "READ",
                 "CREATE",
                 "UPDATE"
-            ]
+            ];
             user.rules = defaultRules;
         }
         const uuid = await this.repository.create(user);
@@ -65,7 +65,7 @@ export default class UserService {
             if(index == -1){
                 user.rules.push(newRule);
                 await this.repository.update(user);
-                return true
+                return true;
             }
             return false;
 
