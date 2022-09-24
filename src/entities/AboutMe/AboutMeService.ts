@@ -28,6 +28,7 @@ export default class AboutMeService{
             return undefined;
         }
     }
+
     public async read(): Promise<AboutMe[]> {
         return await this.repository.read();
     }
@@ -68,7 +69,6 @@ export default class AboutMeService{
             if(index == -1){
                 aboutMe.curiosities.push(newCuriosities);
                 await this.repository.update(aboutMe);
-                console.log(aboutMe)
                 return "Successfully";
             }
             return "Unsuccessfully";
