@@ -4,6 +4,7 @@ import { Express } from "express";
 import os from "os";
 import DotenvComponent from "./components/DotEnvComponent";
 import App from "./configurations/AppConfig";
+import LoggerComponent from "./components/LoggerComponent";
 
 class Server {
 
@@ -24,12 +25,13 @@ class Server {
         const type = os.type();
         const mem = os.totalmem();
         const cpus = os.cpus();
+        const logger = new LoggerComponent(Server.name);
 
-        console.log(`SERVICE RUNNING ON PORT: ${DotenvComponent.API_PORT}`);
-        console.log(`SO: ${type} ${plataform} ${arch}`);
-        console.log(`RAM: ${Math.floor(mem * (10 ** -9))} GB`);
-        console.log(`CORES: ${cpus.length}`);
-        console.log(`CPU: ${cpus[0].model}`);
+        logger.info(`SERVICE RUNNING ON PORT: ${DotenvComponent.API_PORT}`);
+        logger.info(`SO: ${type} ${plataform} ${arch}`);
+        logger.info(`RAM: ${Math.floor(mem * (10 ** -9))} GB`);
+        logger.info(`CORES: ${cpus.length}`);
+        logger.info(`CPU: ${cpus[0].model}`);
     }
 }
 
