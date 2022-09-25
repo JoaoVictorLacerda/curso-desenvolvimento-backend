@@ -41,7 +41,7 @@ export default class AboutMeService{
         }
     }
 
-    public async addProject(uuid: string, newProject: string): Promise<string>{
+    public async addProject(uuid: string, newProject: string): Promise<boolean>{
 
         try {
             const aboutMe: AboutMe = await this.repository.findByUuid(uuid);
@@ -51,14 +51,14 @@ export default class AboutMeService{
             if(index == -1){
                 aboutMe.projects.push(newProject);
                 await this.repository.update(aboutMe);
-                return "Successfully";
+                return true;
             }
-            return "Unsuccessfully";
+            return false;
         } catch (error) {
-            return "Unsuccessfully";
+            return false;
         }
     }
-    public async addCuriosities(uuid: string, newCuriosities: string): Promise<string>{
+    public async addCuriosities(uuid: string, newCuriosities: string): Promise<boolean>{
 
         try {
             const aboutMe: AboutMe = await this.repository.findByUuid(uuid);
@@ -69,15 +69,15 @@ export default class AboutMeService{
             if(index == -1){
                 aboutMe.curiosities.push(newCuriosities);
                 await this.repository.update(aboutMe);
-                return "Successfully";
+                return true;
             }
-            return "Unsuccessfully";
+            return false;
         } catch (error) {
-            return "Unsuccessfully";
+            return false;
         }
     }
 
-    public async removeProject(uuid: string, project: string): Promise<string>{
+    public async removeProject(uuid: string, project: string): Promise<boolean>{
 
         try {
             const aboutMe: AboutMe = await this.repository.findByUuid(uuid);
@@ -87,14 +87,14 @@ export default class AboutMeService{
             if(index > -1){
                 aboutMe.projects.splice(index, 1);
                 await this.repository.update(aboutMe);
-                return "Successfully";
+                return true;
             }
-            return "Unsuccessfully";
+            return false;
         } catch (error) {
-            return "Unsuccessfully";
+            return false;
         }
     }
-    public async removeCuriosities(uuid: string, curiosities: string): Promise<string>{
+    public async removeCuriosities(uuid: string, curiosities: string): Promise<boolean>{
 
         try {
             const aboutMe: AboutMe = await this.repository.findByUuid(uuid);
@@ -104,11 +104,11 @@ export default class AboutMeService{
             if(index > -1){
                 aboutMe.curiosities.splice(index, 1);
                 await this.repository.update(aboutMe);
-                return "Successfully";
+                return true;
             }
-            return "Unsuccessfully";
+            return false;
         } catch (error) {
-            return "Unsuccessfully";
+            return false;
         }
     }
     public async update(academicDescription: string, description: string, uuid: string): Promise<AboutMe>{
