@@ -1,5 +1,6 @@
 import express, { Express, json } from "express";
 import cors from "cors";
+import UserRoutes from "../routes/UserRoutes";
 
 export default class App {
     private app: Express;
@@ -15,9 +16,9 @@ export default class App {
         this.app.use( cors() );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     private configRoutes(): void {
-        
+        const userRoutes = new UserRoutes();
+        this.app.use("/user", userRoutes.getRoutes());
     }
 
     public getApp(): Express {

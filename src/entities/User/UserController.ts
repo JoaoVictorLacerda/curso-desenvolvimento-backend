@@ -47,6 +47,7 @@ export default class UserController {
             const desirableParameters = ["uuid","newName"];
             const { uuid } = request.params;
             const { newName } = request.body;
+
             ParamtersValidationComponent.allParamtersRequired({"uuid":uuid, "newName": newName}, desirableParameters);
 
             const result:User = await service.updateName(uuid, newName);
@@ -94,14 +95,14 @@ export default class UserController {
            const result = await service.deleteRule(uuid, rule);
            if(result){
             logger.info("/user. AddRule method response successfully", rule);
-            return response.status(200).json("Rule added successfully " + rule);
+            return response.status(200).json("Rule removed successfully " + rule);
            }
 
            logger.warn("/user. AddRule method response successfully", rule);
-           return response.status(400).json("Rule added unsuccessfully " + rule);
+           return response.status(400).json("Rule removed unsuccessfully " + rule);
         } catch (error) {
             logger.warn("/user. AddRule method response successfully", error);
-            return response.status(400).json("Rule added unsuccessfully " + error);
+            return response.status(400).json("Rule removed unsuccessfully " + error);
         }
     }
 

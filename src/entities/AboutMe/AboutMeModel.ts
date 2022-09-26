@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-import { v4 } from "uuid";
 
 const schema = new mongoose.Schema({
     _id:{
         type: String,
-        require: true,
-        default: v4()
+        require: true
     },
     description:{
         type: String,
@@ -31,6 +29,6 @@ const schema = new mongoose.Schema({
     }]
 });
 
-const AboutMeModel = mongoose.model("About",schema)
+const AboutMeModel = mongoose.model("About",schema);
 
 export default AboutMeModel;
