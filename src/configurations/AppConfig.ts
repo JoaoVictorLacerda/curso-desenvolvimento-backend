@@ -1,6 +1,7 @@
 import express, { Express, json } from "express";
 import cors from "cors";
 import UserRoutes from "../routes/UserRoutes";
+import AboutMeRoutes from "../routes/AboutMeRoutes";
 
 export default class App {
     private app: Express;
@@ -18,7 +19,10 @@ export default class App {
 
     private configRoutes(): void {
         const userRoutes = new UserRoutes();
+        const aboutMeRoutes = new AboutMeRoutes();
+
         this.app.use("/user", userRoutes.getRoutes());
+        this.app.use("/about-me", aboutMeRoutes.getRoutes());
     }
 
     public getApp(): Express {

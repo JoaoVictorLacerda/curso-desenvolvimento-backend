@@ -32,10 +32,12 @@ export default class AboutMeController{
             const aboutMe:AboutMe = request.body;
        
             const result = await service.create(aboutMe);
+
             if(result !== undefined){
                 
+                const dto = new AboutMeDTO(result);
                 logger.info("/about-me. create method response sucessfuly", result);
-                return response.status(201).json(result);
+                return response.status(201).json(dto);
             }
 
             logger.warn("/about-me. create method response unsucessfuly", result);
@@ -130,8 +132,8 @@ export default class AboutMeController{
             const desirableParameters = ["curiosities", "uuid"];
             ParamtersValidationComponent.allParamtersRequired(request.body, desirableParameters);
             
-            const { newCuriosities, uuid } = request.body;
-            const result = await service.removeCuriosities(uuid, newCuriosities);
+            const { curiosities, uuid } = request.body;
+            const result = await service.removeCuriosities(uuid, curiosities);
 
             if(result){
                 logger.info("/about-me. removeCuriosities method response sucessfuly", { result });
