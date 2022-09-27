@@ -13,5 +13,6 @@ export default class UserRoutes extends RoutesTemplate {
         this.routes.patch("/:uuid", controller.updateName);
         this.routes.patch("/addRule/:uuid", controller.addRule);
         this.routes.patch("/deleteRule/:uuid", controller.deleteRule);
+        this.routes.post("/login", controller.login);
     }
 }

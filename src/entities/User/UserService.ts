@@ -1,3 +1,4 @@
+import CryptographyComponent from "../../components/CryptographyComponent";
 import User from "../../types/User";
 import UserRepository from "./UserRepository";
 
@@ -19,6 +20,8 @@ export default class UserService {
             ];
             user.rules = defaultRules;
         }
+
+        user.password = CryptographyComponent.encrypt(user.password);
         const uuid = await this.repository.create(user);
         user._id = uuid;
 
@@ -85,6 +88,20 @@ export default class UserService {
                 return true;
             }
         }
+        return false;
+    }
+
+    public async login(password: string, email: string): Promise<boolean> {
+
+        const user = await this.findByEmail(email);
+
+        if(user){
+            const validatePass = CryptographyComponent.decrypt(user.password);
+            if( password === validatePass){
+                return true;
+            }
+        }
+
         return false;
     }
 }
