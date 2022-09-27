@@ -58,25 +58,25 @@ describe("should be test the about me service methods", ()=>{
     test("should be add a new project", async () => {
 
         const result = await aboutMeService.addProject(aboutMe._id, "project 3");
-        expect(result).toBe("Successfully");
+        expect(result).toBe(true);
     });
 
     test("should be remove a project 3 ", async () => {
 
         const result = await aboutMeService.removeProject(aboutMe._id, "project 3");
-        expect(result).toBe("Successfully");
+        expect(result).toBe(true);
     });
 
     test("should be add a new curiosity", async () => {
 
         const result = await aboutMeService.addCuriosities(aboutMe._id, "curiosity 3");
-        expect(result).toBe("Successfully");
+        expect(result).toBe(true);
     });
 
     test("should be remove a curiosity 3 ", async () => {
 
         const result = await aboutMeService.removeCuriosities(aboutMe._id, "curiosity 3");
-        expect(result).toBe("Successfully");
+        expect(result).toBe(true);
     });
 
     test("should be delete a about me", async () => {

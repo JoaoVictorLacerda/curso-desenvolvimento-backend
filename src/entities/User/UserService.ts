@@ -1,4 +1,5 @@
 import CryptographyComponent from "../../components/CryptographyComponent";
+import JWtComponent from "../../components/JWTComponent";
 import User from "../../types/User";
 import UserRepository from "./UserRepository";
 
@@ -91,17 +92,20 @@ export default class UserService {
         return false;
     }
 
-    public async login(password: string, email: string): Promise<boolean> {
+    public async login(password: string, email: string): Promise<any> {
 
         const user = await this.findByEmail(email);
 
         if(user){
             const validatePass = CryptographyComponent.decrypt(user.password);
             if( password === validatePass){
-                return true;
+                return {
+                    uuid: user._id,
+                    token: JWtComponent.generateToken(user)
+                };
             }
         }
 
-        return false;
+        return undefined;
     }
 }
