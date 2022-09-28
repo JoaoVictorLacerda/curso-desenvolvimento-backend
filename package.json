@@ -9,8 +9,7 @@
     "commit": "npx cz",
     "release": "npx standard-version",
     "build": "npx tsc",
-
-    "start": "npx tsc && node dist/src/Server.js"
+    "start": "node dist/Server.js"
   },
   "keywords": [],
   "author": "João Victor Lacerda de Queiroz",
