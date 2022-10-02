@@ -19,7 +19,6 @@ class Server {
         this.server.listen(DotenvComponent.PORT,Server.showTheSystemInformation);
     }
 
-    
     private static showTheSystemInformation():void {
         const arch = os.arch();
         const plataform = os.platform();
